@@ -1,28 +1,135 @@
-# React + Vite
+# StudIA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web que utiliza IA para gerar questões personalizadas sobre temas de tecnologia, design, negócios e mais. O usuário escolhe um tópico e subtópico, define a quantidade de questões e inicia um quiz gerado dinamicamente pelo Gemini.
 
-## Estrutura do projeto
+---
 
-- `frontend/` — código React + Vite que foi feito até o momento
-- `backend/` — servidor Node/Express básico com rota de exemplo
+## Funcionalidades
 
-Para rodar:
+- Seleção de tópico e subtópico via carrossel interativo
+- Geração de questões com IA (Gemini)
+- Configuração do número de questões por sessão
+- Página de gerenciamento de tópicos e subtópicos (CRUD completo)
+- Backend REST com Node.js, Express e Prisma
+- Banco de dados MongoDB
 
-```bash
-cd frontend && npm install && npm run dev
-cd backend && npm install && npm run dev
+---
+
+## Estrutura do Projeto
+
+```
+StudIA/
+├── frontend/          # React + Vite
+│   └── src/
+│       ├── pages/
+│       │   ├── home/          # Tela principal com seleção de tópico
+│       │   ├── quiz/          # Tela do quiz gerado pela IA
+│       │   └── settings/      # Gerenciamento de tópicos e subtópicos
+│       └── services/
+│           └── api.js         # Configuração do axios
+│
+└── backend/           # Node.js + Express + Prisma
+    ├── src/
+    │   ├── controllers/       # Lógica das rotas
+    │   ├── routes/            # Definição das rotas
+    │   └── util/
+    │       └── prisma.js      # Instância do Prisma Client
+    └── prisma/
+        └── schema.prisma      # Modelos Topic e Subtopic
 ```
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologias
 
-## React Compiler
+**Frontend**
+- React 18
+- React Router DOM
+- Vite
+- Axios
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Backend**
+- Node.js
+- Express
+- Prisma ORM
+- MongoDB
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pré-requisitos
+
+- Node.js 18+
+- Conta MongoDB Atlas (ou instância local)
+- Chave de API do Gemini
+
+---
+
+## Instalação e Execução
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/StudIA.git
+cd StudIA
+```
+
+### 2. Configure o backend
+
+```bash
+cd backend
+npm install
+```
+
+Crie um arquivo `.env` na pasta `backend/`:
+
+```env
+DATABASE_URL="mongodb+srv://usuario:senha@cluster.mongodb.net/studia"
+PORT=4000
+```
+
+Gere o Prisma Client e popule o banco:
+
+```bash
+npx prisma generate
+npx prisma db push
+npm run seed
+```
+
+Inicie o servidor:
+
+```bash
+npm run dev
+```
+
+### 3. Configure o frontend
+
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+---
+
+## Rotas da API
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/topics` | Lista todos os tópicos com subtópicos |
+| POST | `/topics` | Cria um novo tópico |
+| PUT | `/topics/:id` | Atualiza um tópico |
+| DELETE | `/topics/:id` | Remove um tópico e seus subtópicos |
+| POST | `/topics/:topicId/subtopics` | Cria um subtópico |
+| PUT | `/subtopic/:topicId/:subtopicId` | Atualiza um subtópico |
+| DELETE | `/subtopic/:topicId/:subtopicId` | Remove um subtópico |
+
+---
+
+## Variáveis de Ambiente
+
+| Variável | Descrição |
+|----------|-----------|
+| `DATABASE_URL` | String de conexão com o MongoDB |
+| `PORT` | Porta do servidor backend (padrão: 4000) |
