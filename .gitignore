@@ -1,0 +1,36 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependências
+node_modules
+dist
+dist-ssr
+*.local
+
+# ── Segurança: variáveis de ambiente ──
+.env
+.env.*
+!.env.example
+
+# ── Prisma: cliente gerado ──
+**/generated/prisma
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
