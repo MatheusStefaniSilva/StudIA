@@ -1,7 +1,7 @@
 # StudIA
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.0.0-blue?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/version-0.0.1-blue?style=for-the-badge" alt="Version" />
   <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=for-the-badge" alt="Status" />
   <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License" />
 </p>
